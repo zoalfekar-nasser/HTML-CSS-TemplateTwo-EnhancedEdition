@@ -1,0 +1,92 @@
+@use "colors" as c;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*:focus {
+  outline: none;
+}
+ul {
+  list-style: none;
+}
+input {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+}
+a {
+  display: block;
+  text-decoration: none;
+}
+p {
+  line-height: 1.6;
+}
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+body {
+  font-family: "Cairo", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+// Containers
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Small */
+@media (min-width: 576px) {
+  .container {
+    width: 540px;
+  }
+}
+/* Medium */
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+  }
+}
+/* Large */
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+  }
+}
+/* X-Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+  }
+}
+/* XX-Large */
+@media (min-width: 1400px) {
+  .container {
+    width: 1320px;
+  }
+}
+//* Scroll Bar
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: c.$clr-primary;
+  border-inline: 4px solid hsl(193, 100%, 44%);
+  &:hover {
+    background-color: hsl(193, 100%, 44%);
+  }
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(c.$clr-primary, 0.3);
+}

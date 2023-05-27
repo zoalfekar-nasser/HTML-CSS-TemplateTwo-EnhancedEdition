@@ -1,0 +1,52 @@
+@use "../helpers/variables" as v;
+%srv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  @media (v.$max-small) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+%features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  @media (v.$max-small) {
+    grid-template-columns: 99%;
+    justify-content: flex-end;
+  }
+}
+
+%gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(450px,1fr));
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+%skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  @media (v.$max-medium) {
+    grid-template-columns: 1fr;
+  }
+}
+
+%pricing-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(275px,1fr));
+  gap: 2rem;
+}
+
+%contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  @media (v.$max-small) {
+    grid-template-columns: 1fr;
+  }
+}

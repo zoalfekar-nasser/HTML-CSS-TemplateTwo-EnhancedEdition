@@ -1,0 +1,151 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+
+//* FLex Mixin
+@mixin flex($justify: flex-start, $align: stretch, $dir: row) {
+  display: flex;
+  @if $justify != flex-start {
+    justify-content: $justify;
+  }
+  @if $align != stretch {
+    align-items: $align;
+  }
+  @if $dir != row {
+    flex-direction: $dir;
+  }
+  @content;
+}
+//* ========================================
+
+//* Amazing border;
+
+@mixin am-border($left, $top, $dir1, $dir2, $colors...) {
+  position: relative;
+  @content;
+  &::after {
+    content: "";
+    width: 150px;
+    height: 2px;
+    position: absolute;
+    top: $top;
+    left: $left;
+    background-image: linear-gradient($dir1, $colors);
+  }
+  &::before {
+    content: "";
+    width: 2px;
+    height: 150px;
+    position: absolute;
+    top: $top;
+    left: $left;
+    background-image: linear-gradient($dir2, $colors);
+  }
+}
+
+//* Box Shadow Mixin sh => shadow , Tr => transform
+
+@mixin shTr($h: 0, $v: 0, $blur: 0, $color: black) {
+  transition: box-shadow v.$main-transition, transform v.$main-transition;
+  &:hover {
+    box-shadow: $h $v $blur $color;
+    transform: translateY(-5px);
+  }
+}
+
+@mixin overlay($color) {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color;
+    z-index: -1;
+  }
+}
+
+@mixin button($color1, $color2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  aspect-ratio: 3 / 1;
+  background-image: linear-gradient(180deg, $color1, $color2);
+  color: white;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-inline: auto;
+  border-radius: 5px;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: transform v.$transition, box-shadow v.$transition,
+    color v.$transition, background v.$transition;
+  .top,
+  .right,
+  .bottom,
+  .left {
+    position: absolute;
+    background-color: $color1;
+  }
+  .top,
+  .bottom {
+    transition: width v.$transition linear;
+    width: 0;
+    height: 2px;
+  }
+  .left,
+  .right {
+    transition: height v.$transition linear;
+    height: 0;
+    width: 2px;
+  }
+  .top,
+  .right {
+    top: 0;
+    right: 0;
+  }
+  .bottom,
+  .left {
+    bottom: 0;
+    left: 0;
+  }
+
+  &:hover {
+    box-shadow: none;
+    background-image: none;
+    background-color: white;
+    color: $color1;
+    .top,
+    .bottom {
+      width: 100%;
+    }
+    .left,
+    .right {
+      height: 100%;
+    }
+  }
+  &:active {
+    transform: translateY(5px);
+  }
+}
+@mixin arrow-up($width: 40px, $b-color: black, $color: white) {
+  position: fixed;
+  bottom: 15px;
+  width: $width;
+  aspect-ratio: 1;
+  background-color: $b-color;
+  color: $color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 576px) {
+    display: none;
+  }
+  @content;
+}
