@@ -904,7 +904,7 @@ header {
           input[type="email"] {
             flex: 1;
             align-self: stretch;
-            padding-left: 2.5rem;
+            padding-inline: 2.5rem 0.5rem;
             color: white;
             position: relative;
             &::placeholder {
@@ -924,8 +924,12 @@ header {
               background-color: hsl(193, 100%, 42%);
             }
             @media (max-width: 576px) {
-              padding: 0.5rem;
+              padding: 0.25rem;
+              font-size: 14px;
             }
+          }
+          @media (max-width: 576px) {
+            flex-direction: column;
           }
         }
       }
